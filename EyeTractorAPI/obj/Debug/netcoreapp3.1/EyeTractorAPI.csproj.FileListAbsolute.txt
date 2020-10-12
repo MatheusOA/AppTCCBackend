@@ -297,8 +297,6 @@ D:\Home_Work\AppTCCBackend\EyeTractorAPI\bin\Debug\netcoreapp3.1\runtimes\unix\l
 D:\Home_Work\AppTCCBackend\EyeTractorAPI\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 D:\Home_Work\AppTCCBackend\EyeTractorAPI\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 D:\Home_Work\AppTCCBackend\EyeTractorAPI\obj\Debug\netcoreapp3.1\EyeTractorAPI.csprojAssemblyReference.cache
-D:\Home_Work\AppTCCBackend\EyeTractorAPI\obj\Debug\netcoreapp3.1\EyeTractorAPI.csproj.CoreCompileInputs.cache
-D:\Home_Work\AppTCCBackend\EyeTractorAPI\obj\Debug\netcoreapp3.1\EyeTractorAPI.MvcApplicationPartsAssemblyInfo.cache
 D:\Home_Work\AppTCCBackend\EyeTractorAPI\obj\Debug\netcoreapp3.1\EyeTractorAPI.AssemblyInfoInputs.cache
 D:\Home_Work\AppTCCBackend\EyeTractorAPI\obj\Debug\netcoreapp3.1\EyeTractorAPI.AssemblyInfo.cs
 D:\Home_Work\AppTCCBackend\EyeTractorAPI\obj\Debug\netcoreapp3.1\EyeTractorAPI.RazorTargetAssemblyInfo.cache
@@ -308,3 +306,8 @@ D:\Home_Work\AppTCCBackend\EyeTractorAPI\obj\Debug\netcoreapp3.1\staticwebassets
 D:\Home_Work\AppTCCBackend\EyeTractorAPI\obj\Debug\netcoreapp3.1\EyeTractorAPI.dll
 D:\Home_Work\AppTCCBackend\EyeTractorAPI\obj\Debug\netcoreapp3.1\EyeTractorAPI.pdb
 D:\Home_Work\AppTCCBackend\EyeTractorAPI\obj\Debug\netcoreapp3.1\EyeTractorAPI.genruntimeconfig.cache
+D:\Home_Work\AppTCCBackend\EyeTractorAPI\bin\Debug\netcoreapp3.1\AutoMapper.dll
+D:\Home_Work\AppTCCBackend\EyeTractorAPI\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\Home_Work\AppTCCBackend\EyeTractorAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Home_Work\AppTCCBackend\EyeTractorAPI\obj\Debug\netcoreapp3.1\EyeTractorAPI.csproj.CoreCompileInputs.cache
+D:\Home_Work\AppTCCBackend\EyeTractorAPI\obj\Debug\netcoreapp3.1\EyeTractorAPI.MvcApplicationPartsAssemblyInfo.cache

@@ -1,28 +1,29 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace EyeTractorAPI.Models
 {
-    public partial class EYE_TRACKINGContext : DbContext
+    public partial class DataContext : DbContext
     {
-        public EYE_TRACKINGContext()
-        {
-        }
+        protected readonly IConfiguration _configuration;
 
-        public EYE_TRACKINGContext(DbContextOptions<EYE_TRACKINGContext> options)
-            : base(options)
+        public DataContext(IConfiguration configuration)
         {
+            _configuration = configuration;
         }
 
         public virtual DbSet<CameraData> CameraData { get; set; }
+        public virtual DbSet<Messages> Messages { get; set; }
         public virtual DbSet<SellingPoints> SellingPoints { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("StringConexao");
+                optionsBuilder.UseSqlServer(_configuration.GetConnectionString("SQLDatabase"));
             }
         }
 
@@ -50,9 +51,18 @@ namespace EyeTractorAPI.Models
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
             });
 
+            modelBuilder.Entity<Messages>(entity =>
+            {
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+
+                entity.Property(e => e.CreationDateTime).HasColumnType("datetime");
+
+                entity.Property(e => e.Message).IsUnicode(false);
+            });
+
             modelBuilder.Entity<SellingPoints>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Latitude).HasColumnType("decimal(20, 15)");
 
@@ -65,6 +75,21 @@ namespace EyeTractorAPI.Models
                 entity.Property(e => e.Vicinity)
                     .HasMaxLength(200)
                     .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Users>(entity =>
+            {
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Type)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Username).IsUnicode(false);
             });
 
             OnModelCreatingPartial(modelBuilder);
