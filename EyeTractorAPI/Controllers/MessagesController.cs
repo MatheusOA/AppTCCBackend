@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Authorization;
 using EyeTractorAPI.Services;
 using AutoMapper;
 using Microsoft.Extensions.Primitives;
+using EyeTractorAPI.Models.Message;
+using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
 
 namespace EyeTractorAPI.Controllers
 {
@@ -33,9 +35,26 @@ namespace EyeTractorAPI.Controllers
 
         // GET: api/Messages
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Messages>>> GetMessages()
+        public async Task<ActionResult<IEnumerable<UserMessage>>> GetMessages()
         {
-            return await _context.Messages.ToListAsync();
+            string userId = _userService.GetIdByRequest(Request);
+
+            var messages = await _context.Messages.ToListAsync();
+            List<UserMessage> responseMessages = new List<UserMessage>();
+
+            foreach (var message in messages)
+            {
+                UserMessage newMessage = new UserMessage()
+                {
+                    Text = message.Message,
+                    MessageDateTime = Convert.ToDateTime(message.CreationDateTime),
+                    IsAuthor = message.UserId.ToString() == userId
+                };
+
+                responseMessages.Add(newMessage);
+            }
+
+            return responseMessages;
         }
 
         // POST: api/Messages

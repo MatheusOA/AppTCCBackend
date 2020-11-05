@@ -33,11 +33,47 @@ namespace EyeTractorAPI.Controllers
 
         // GET: api/Messages
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CameraData>>> GetMessages()
+        public async Task<ActionResult<IEnumerable<DateEvent>>> GetMessages()
         {
             int userId = int.Parse(_userService.GetIdByRequest(Request));
+            List<CameraData> cameraDatas = await _context.CameraData.Where(x => x.UserId == userId).ToListAsync();
 
-            return await _context.CameraData.Where(x => x.UserId == userId).ToListAsync();
+            return ConvertCameraDataToDataEvents(cameraDatas);
+        }
+
+        public List<DateEvent> ConvertCameraDataToDataEvents(List<CameraData> cameraDatas)
+        {
+            List<DateEvent> eventos = new List<DateEvent>();
+            
+            if (cameraDatas == null)
+            {
+                return null;
+            }
+
+            foreach (CameraData cameraData in cameraDatas)
+            {
+                int tPosition = cameraData.EventDate.IndexOf('T');
+                string date = cameraData.EventDate.Substring(0, tPosition);
+
+                DateEvent foundDate = eventos.Find(x => x.Date == date);
+                DateEvent currentDate = foundDate ?? new DateEvent(date);
+
+                if (cameraData.EventType == "distracao")
+                {
+                    currentDate.Distraction++;
+                }
+                else
+                {
+                    currentDate.Fatigue++;
+                }
+
+                if (foundDate == null)
+                {
+                    eventos.Add(currentDate);
+                }
+            }
+
+            return eventos;
         }
     }
 }
